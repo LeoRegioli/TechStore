@@ -21,7 +21,7 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("ReactApp", policy =>
     {
-        policy.WithOrigins("https://localhost:52351").AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins("https://localhost:52351", "https://purple-ocean-0a457f80f.4.azurestaticapps.net").AllowAnyHeader().AllowAnyMethod();
     });
 });
 
