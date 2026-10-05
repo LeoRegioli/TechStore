@@ -9,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+//builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<CategoriaRepository>();
 builder.Services.AddScoped<CategoriaService>();
@@ -25,7 +27,7 @@ builder.Services.AddCors(opt =>
     });
 });
 
-builder.Configuration.AddAzureKeyVault(new Uri("https://kv-techstore.vault.azure.net/"), new DefaultAzureCredential());
+//builder.Configuration.AddAzureKeyVault(new Uri("https://kv-techstore.vault.azure.net/"), new DefaultAzureCredential());
 
 var app = builder.Build();
 app.UseCors("ReactApp");
@@ -36,7 +38,9 @@ app.UseCors("ReactApp");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    //app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
