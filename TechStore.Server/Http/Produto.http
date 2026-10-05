@@ -1,0 +1,40 @@
+@TechStore.Server_HostAddress = http://localhost:5180
+
+POST {{TechStore.Server_HostAddress}}/api/produtos/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nome": "Suco de Laranja Natural",
+  "descricao": "Suco de laranja integral, sem adição de açúcar, embalagem de 1 litro.",
+  "preco": 12.90,
+  "categoriaId": 6
+}
+
+###
+
+GET {{TechStore.Server_HostAddress}}/api/produtos/
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET {{TechStore.Server_HostAddress}}/api/produtos/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+PUT {{TechStore.Server_HostAddress}}/api/produtos/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nome": "Suco de Laranja Natural",
+  "descricao": "Suco de laranja integral, sem adição de açúcar, embalagem de 1 litro.",
+  "preco": 2.40,
+  "categoriaId": 6
+}
+
+###
