@@ -17,7 +17,7 @@ public sealed class CategoriaService(CategoriaRepository _repository)
         };
     }
 
-    public async Task<IReadOnlyList<Categoria>> BuscarCategorias()
+    public async Task<IReadOnlyList<CategoriaResponseDTO>> BuscarCategorias()
     {
         return await _repository.BuscarCategorias();
     }

@@ -27,7 +27,7 @@ builder.Services.AddCors(opt =>
     });
 });
 
-//builder.Configuration.AddAzureKeyVault(new Uri("https://kv-techstore.vault.azure.net/"), new DefaultAzureCredential());
+builder.Configuration.AddAzureKeyVault(new Uri("https://kv-techstore.vault.azure.net/"), new DefaultAzureCredential());
 
 var app = builder.Build();
 app.UseCors("ReactApp");
@@ -39,10 +39,12 @@ app.UseCors("ReactApp");
 if (app.Environment.IsDevelopment())
 {
     //app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

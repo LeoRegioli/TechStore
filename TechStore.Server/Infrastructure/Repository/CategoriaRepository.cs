@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechStore.Server.Application.DTO.Categoria;
+using TechStore.Server.Application.DTO.Produto;
 using TechStore.Server.Context;
 using TechStore.Server.Domain.Entities;
 
@@ -14,9 +15,19 @@ public sealed class CategoriaRepository(TechStoreDbContext _context)
         return categoria;
     }
 
-    public async Task<IReadOnlyList<Categoria>> BuscarCategorias()
+    public async Task<IReadOnlyList<CategoriaResponseDTO>> BuscarCategorias()
     {
-        var listasCategorias = await _context.Categorias.AsNoTracking().ToListAsync();
+        var listasCategorias = await _context.Categorias.AsNoTracking().Select(c => new CategoriaResponseDTO
+        {
+            Id = c.Id,
+            Nome = c.Nome,
+            Descricao = c.Descricao,
+            Produtos = c.Produtos.Select(p => new ProdutoResponseDTO {
+                Id = p.Id,
+                Nome = p.Nome,
+                Descricao = p.Descricao
+            }).ToList()
+        }).ToListAsync();
         return listasCategorias;
     }
 
